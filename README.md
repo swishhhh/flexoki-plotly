@@ -4,14 +4,14 @@ Light and dark [Plotly](https://plotly.com/python/) themes built from [Flexoki](
 
 Registers two templates — `flexoki_light` and `flexoki_dark` — that you can pass to any Plotly figure.
 
-## Interactive demos
+## Interactive showcase
 
-**[Open interactive demos →](https://swishhhh.github.io/flexoki-plotly/)**
+**[Open interactive showcase →](https://swishhhh.github.io/flexoki-plotly/)**
 
 <table>
 	<tr>
-		<td><a href="https://swishhhh.github.io/flexoki-plotly/flexoki_dark_demo.html"><img src="docs/demos/flexoki_dark_demo.png" alt="Flexoki dark Plotly demo"></a></td>
-		<td><a href="https://swishhhh.github.io/flexoki-plotly/flexoki_light_demo.html"><img src="docs/demos/flexoki_light_demo.png" alt="Flexoki light Plotly demo"></a></td>
+		<td><a><img src="docs/demos/flexoki_dark_demo.png" alt="Flexoki dark Plotly demo"></a></td>
+		<td><a><img src="docs/demos/flexoki_light_demo.png" alt="Flexoki light Plotly demo"></a></td>
 	</tr>
 </table>
 
