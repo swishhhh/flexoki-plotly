@@ -76,7 +76,11 @@ def main() -> None:
     args.output.mkdir(parents=True, exist_ok=True)
     for chart_name, figure in build_showcase(args.theme).items():
         html_output = args.output / f"{args.theme}_{chart_name}.html"
-        figure.write_html(html_output)
+        figure.write_html(
+            html_output,
+            include_plotlyjs="cdn",
+            div_id=f"{args.theme}_{chart_name}",
+        )
         print(f"Wrote {html_output}")
 
 

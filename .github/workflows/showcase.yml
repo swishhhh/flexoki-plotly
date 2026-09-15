@@ -34,4 +34,9 @@ jobs:
         run: python scripts/showcase.py --theme flexoki_dark --output docs/showcase
 
       - name: Check generated HTML is committed
-        run: git diff --exit-code -- docs/showcase
+        run: |
+          if ! git diff --quiet -- docs/showcase; then
+            echo "Generated showcase HTML is stale. Run the showcase script and commit the results."
+            git diff --stat -- docs/showcase
+            exit 1
+          fi
