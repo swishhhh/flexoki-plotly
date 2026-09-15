@@ -8,9 +8,12 @@ Registers two templates — `flexoki_light` and `flexoki_dark` — that you can 
 
 **[Open interactive demos →](https://swishhhh.github.io/flexoki-plotly/)**
 
-[![Flexoki dark Plotly demo](examples/flexoki_dark_demo.png)](https://swishhhh.github.io/flexoki-plotly/flexoki_dark_demo.html)
-
-[![Flexoki light Plotly demo](examples/flexoki_light_demo.png)](https://swishhhh.github.io/flexoki-plotly/flexoki_light_demo.html)
+<table>
+	<tr>
+		<td><a href="https://swishhhh.github.io/flexoki-plotly/flexoki_dark_demo.html"><img src="docs/demos/flexoki_dark_demo.png" alt="Flexoki dark Plotly demo"></a></td>
+		<td><a href="https://swishhhh.github.io/flexoki-plotly/flexoki_light_demo.html"><img src="docs/demos/flexoki_light_demo.png" alt="Flexoki light Plotly demo"></a></td>
+	</tr>
+</table>
 
 ## Install
 
@@ -77,11 +80,17 @@ Light mode uses Flexoki's `-600` accent weights; dark mode uses `-400`, matching
 
 ## Try it
 
+For a broader chart showcase, run:
+
 ```bash
-python examples/demo.py
+python scripts/showcase.py --output docs/showcase
+python scripts/showcase.py --theme flexoki_dark --output docs/showcase
 ```
 
-This writes `flexoki_light_demo.html` and `flexoki_dark_demo.html` — open either in a browser to see a sample multi-series line chart in both themes.
+Each run writes one HTML file per chart into `docs/showcase/`. The [interactive chart showcase](docs/index.html) presents every chart sequentially in both themes.
+
+The repository workflow regenerates the showcase whenever the theme or showcase script changes and checks that the generated HTML is committed.
+
 
 ## Palette reference
 
@@ -111,7 +120,7 @@ Full palette, including the extended 50–950 scale for each color, is documente
 
 ## Updating the theme
 
-All colors live at the top of `flexoki_plotly.py` in the `LIGHT`, `DARK`, `ACCENTS_LIGHT`, and `ACCENTS_DARK` dicts/lists — edit those and re-run `examples/demo.py` to check the result. Layout structure (what maps to what — e.g. `axis.gridcolor`) lives in `_build_template()`.
+All colors live at the top of `flexoki_plotly.py` in the `LIGHT`, `DARK`, `ACCENTS_LIGHT`, and `ACCENTS_DARK` dicts/lists — edit those and re-run `scripts/showcase.py` to check the result. Layout structure (what maps to what — e.g. `axis.gridcolor`) lives in `_build_template()`.
 
 ## Reference
 
