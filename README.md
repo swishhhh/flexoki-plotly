@@ -9,7 +9,7 @@ Registers two templates — `flexoki_light` and `flexoki_dark` — that you can 
 **Option A — pip install straight from this repo** (once it's pushed to GitHub):
 
 ```bash
-pip install git+https://github.com/<you>/flexoki-plotly.git
+pip install git+https://github.com/swishhhh/flexoki-plotly.git
 ```
 
 **Option B — local editable install** (if you cloned it):
