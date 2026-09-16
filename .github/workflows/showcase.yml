@@ -15,6 +15,8 @@ on:
 jobs:
   showcase:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -30,10 +32,16 @@ jobs:
       - name: Regenerate showcase
         run: python scripts/showcase.py --output docs/showcase
 
-      - name: Check generated HTML is committed
+      - name: Commit generated HTML
+        if: github.event_name == 'push'
         run: |
-          if ! git diff --quiet -- docs/showcase; then
-            echo "Generated showcase HTML is stale. Run the showcase script and commit the results."
-            git diff --stat -- docs/showcase
-            exit 1
+          if git diff --quiet -- docs/showcase; then
+            echo "Showcase HTML is already up to date."
+            exit 0
           fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/showcase
+          git commit -m "Regenerate showcase HTML"
+          git push
