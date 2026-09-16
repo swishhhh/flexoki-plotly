@@ -13,7 +13,7 @@ import plotly.io as pio
 # --- Base values -----------------------------------------------------------
 
 LIGHT = dict(
-    bg="#FFFCF0",
+    bg="#F0F2FF",
     bg2="#F2F0E5",
     ui="#E6E4D9",
     ui2="#DAD8CE",
@@ -24,7 +24,7 @@ LIGHT = dict(
 )
 
 DARK = dict(
-    bg="#100F0F",
+    bg="#F0F2FF",
     bg2="#1C1B1A",
     ui="#282726",
     ui2="#343331",
