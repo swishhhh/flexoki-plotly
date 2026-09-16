@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flexoki Box Chart</title>
+    <style>html, body { margin: 0; } #chart { width: 100%; }</style>
+</head>
+<body>
+    <div id="flexoki_box" style="height:500px; width:100%;"></div>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script>
+        const chartData = [{"boxmean": true, "name": "Costs", "y": [31, 35, 34, 39, 43, 46, 52, 57], "type": "box"}];
+        const themes = {"light": {"height": 500, "showlegend": false, "template": {"layout": {"colorscale": {"diverging": [[0, "#AF3029"], [0.5, "#F2F0E5"], [1, "#205EA6"]], "sequential": [[0, "#F2F0E5"], [1, "#205EA6"]]}, "colorway": ["#205EA6", "#BC5215", "#66800B", "#A02F6F", "#24837B", "#AF3029", "#AD8301", "#5E409D"], "font": {"color": "#100F0F", "family": "Inter, Helvetica, Arial, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#F2F0E5", "bordercolor": "#DAD8CE", "font": {"color": "#100F0F"}}, "legend": {"bgcolor": "#FFFCF0", "bordercolor": "#E6E4D9", "borderwidth": 1, "font": {"color": "#6F6E69"}}, "margin": {"b": 50, "l": 60, "r": 30, "t": 60}, "paper_bgcolor": "#FFFCF0", "plot_bgcolor": "#FFFCF0", "shapedefaults": {"line": {"color": "#CECDC3"}}, "title": {"font": {"color": "#100F0F", "size": 18}}, "xaxis": {"gridcolor": "#E6E4D9", "linecolor": "#DAD8CE", "tickcolor": "#DAD8CE", "tickfont": {"color": "#6F6E69"}, "title": {"font": {"color": "#6F6E69"}}, "zerolinecolor": "#DAD8CE"}, "yaxis": {"gridcolor": "#E6E4D9", "linecolor": "#DAD8CE", "tickcolor": "#DAD8CE", "tickfont": {"color": "#6F6E69"}, "title": {"font": {"color": "#6F6E69"}}, "zerolinecolor": "#DAD8CE"}}}, "xaxis": {"showgrid": false}, "yaxis": {"showgrid": true}, "title": {"text": "Flexoki Light - Box Chart"}}, "dark": {"height": 500, "showlegend": false, "template": {"layout": {"colorscale": {"diverging": [[0, "#D14D41"], [0.5, "#1C1B1A"], [1, "#4385BE"]], "sequential": [[0, "#1C1B1A"], [1, "#4385BE"]]}, "colorway": ["#4385BE", "#DA702C", "#879A39", "#CE5D97", "#3AA99F", "#D14D41", "#D0A215", "#8B7EC8"], "font": {"color": "#CECDC3", "family": "Inter, Helvetica, Arial, sans-serif", "size": 13}, "hoverlabel": {"bgcolor": "#1C1B1A", "bordercolor": "#343331", "font": {"color": "#CECDC3"}}, "legend": {"bgcolor": "#100F0F", "bordercolor": "#282726", "borderwidth": 1, "font": {"color": "#878580"}}, "margin": {"b": 50, "l": 60, "r": 30, "t": 60}, "paper_bgcolor": "#100F0F", "plot_bgcolor": "#100F0F", "shapedefaults": {"line": {"color": "#403E3C"}}, "title": {"font": {"color": "#CECDC3", "size": 18}}, "xaxis": {"gridcolor": "#282726", "linecolor": "#343331", "tickcolor": "#343331", "tickfont": {"color": "#878580"}, "title": {"font": {"color": "#878580"}}, "zerolinecolor": "#343331"}, "yaxis": {"gridcolor": "#282726", "linecolor": "#343331", "tickcolor": "#343331", "tickfont": {"color": "#878580"}, "title": {"font": {"color": "#878580"}}, "zerolinecolor": "#343331"}}}, "xaxis": {"showgrid": false}, "yaxis": {"showgrid": true}, "title": {"text": "Flexoki Dark - Box Chart"}}};
+        const chart = document.getElementById("flexoki_box");
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        let activeTheme = systemTheme.matches ? "dark" : "light";
+
+        function setTheme(theme) {
+            activeTheme = theme === "dark" ? "dark" : "light";
+            Plotly.react(chart, chartData, themes[activeTheme], {responsive: true});
+        }
+
+        window.addEventListener("message", (event) => {
+            if (event.source === window.parent && event.data?.type === "flexoki-theme") {
+                setTheme(event.data.theme);
+            }
+        });
+
+        systemTheme.addEventListener("change", (event) => {
+            if (window.parent === window) setTheme(event.matches ? "dark" : "light");
+        });
+
+        setTheme(activeTheme);
+    </script>
+</body>
+</html>

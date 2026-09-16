@@ -84,10 +84,9 @@ For a broader chart showcase, run:
 
 ```bash
 python scripts/showcase.py --output docs/showcase
-python scripts/showcase.py --theme flexoki_dark --output docs/showcase
 ```
 
-Each run writes one HTML file per chart into `docs/showcase/`. The [interactive chart showcase](docs/index.html) presents every chart sequentially in both themes.
+The script writes one HTML file per chart into `docs/showcase/`. The [interactive chart showcase](docs/index.html) presents every chart sequentially, with a theme toggle that updates both the page and charts.
 
 The repository workflow regenerates the showcase whenever the theme or showcase script changes and checks that the generated HTML is committed.
 

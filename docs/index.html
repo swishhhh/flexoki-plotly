@@ -1,103 +1,66 @@
+---
+---
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Flexoki Plotly — Interactive Demos</title>
-    <style>
-        body {
-            margin: 0;
-            background: #fffcf0;
-            color: #100f0f;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        h1 {
-            margin-bottom: 0.5rem;
-        }
-
-        p {
-            color: #6f6e69;
-        }
-
-        section {
-            margin-top: 3rem;
-        }
-
-        iframe {
-            display: block;
-            width: 100%;
-            height: 650px;
-            border: 1px solid #e6e4d9;
-            border-radius: 8px;
-            background: white;
-        }
-
-        iframe.showcase {
-            height: 520px;
-        }
-
-        a {
-            color: #205ea6;
-        }
-    </style>
+    <title>Flexoki Plotly - Interactive Demos</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
-<body>
+<body data-theme="light">
     <main>
-        <h1>Flexoki Plotly</h1>
+        <header class="page-header">
+            <div>
+                <h1>Flexoki Plotly</h1>
+                <p>Interactive Plotly demos using the Flexoki light and dark themes.</p>
+            </div>
+            <button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+                <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+                <span class="theme-toggle-label">Dark theme</span>
+            </button>
+        </header>
 
-        <p>
-            Interactive Plotly demos using the Flexoki light and dark themes.
-        </p>
-
-        <section>
-            <h2>Dark chart showcase</h2>
-            <iframe class="showcase" src="showcase/flexoki_dark_line.html" title="Flexoki dark line chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_bar.html" title="Flexoki dark bar chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_area.html" title="Flexoki dark area chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_scatter.html" title="Flexoki dark scatter chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_histogram.html" title="Flexoki dark histogram chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_box.html" title="Flexoki dark box chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_pie.html" title="Flexoki dark pie chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_dark_heatmap.html" title="Flexoki dark heatmap chart">
-            </iframe>
-        </section>
-
-        <section>
-            <h2>Light chart showcase</h2>
-            <iframe class="showcase" src="showcase/flexoki_light_line.html" title="Flexoki light line chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_bar.html" title="Flexoki light bar chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_area.html" title="Flexoki light area chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_scatter.html" title="Flexoki light scatter chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_histogram.html" title="Flexoki light histogram chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_box.html" title="Flexoki light box chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_pie.html" title="Flexoki light pie chart">
-            </iframe>
-            <iframe class="showcase" src="showcase/flexoki_light_heatmap.html" title="Flexoki light heatmap chart">
-            </iframe>
+        <section class="showcase-grid">
+            <h2>Chart showcase</h2>
+            <iframe class="showcase" src="showcase/line.html" title="Flexoki line chart"></iframe>
+            <iframe class="showcase" src="showcase/bar.html" title="Flexoki bar chart"></iframe>
+            <iframe class="showcase" src="showcase/area.html" title="Flexoki area chart"></iframe>
+            <iframe class="showcase" src="showcase/scatter.html" title="Flexoki scatter chart"></iframe>
+            <iframe class="showcase" src="showcase/histogram.html" title="Flexoki histogram chart"></iframe>
+            <iframe class="showcase" src="showcase/box.html" title="Flexoki box chart"></iframe>
+            <iframe class="showcase" src="showcase/pie.html" title="Flexoki pie chart"></iframe>
+            <iframe class="showcase" src="showcase/heatmap.html" title="Flexoki heatmap chart"></iframe>
         </section>
     </main>
+    <script>
+        const page = document.body;
+        const toggle = document.querySelector(".theme-toggle");
+        const frames = [...document.querySelectorAll("iframe.showcase")];
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+        let userSelected = false;
+
+        function setTheme(theme) {
+            const isDark = theme === "dark";
+            page.dataset.theme = isDark ? "dark" : "light";
+            toggle.setAttribute("aria-pressed", String(isDark));
+            toggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
+            toggle.querySelector(".theme-toggle-label").textContent = `${isDark ? "Light" : "Dark"} theme`;
+            frames.forEach((frame) => frame.contentWindow.postMessage({ type: "flexoki-theme", theme: page.dataset.theme }, window.location.origin));
+        }
+
+        toggle.addEventListener("click", () => {
+            userSelected = true;
+            setTheme(page.dataset.theme === "dark" ? "light" : "dark");
+        });
+        frames.forEach((frame) => frame.addEventListener("load", () => setTheme(page.dataset.theme)));
+        systemTheme.addEventListener("change", (event) => {
+            if (!userSelected) setTheme(event.matches ? "dark" : "light");
+        });
+        setTheme(systemTheme.matches ? "dark" : "light");
+    </script>
 </body>
 
 </html>

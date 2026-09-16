@@ -27,11 +27,8 @@ jobs:
       - name: Install project dependencies
         run: python -m pip install .
 
-      - name: Regenerate light showcase
-        run: python scripts/showcase.py --theme flexoki_light --output docs/showcase
-
-      - name: Regenerate dark showcase
-        run: python scripts/showcase.py --theme flexoki_dark --output docs/showcase
+      - name: Regenerate showcase
+        run: python scripts/showcase.py --output docs/showcase
 
       - name: Check generated HTML is committed
         run: |
