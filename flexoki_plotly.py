@@ -13,7 +13,7 @@ import plotly.io as pio
 # --- Base values -----------------------------------------------------------
 
 LIGHT = dict(
-    bg="#FFFCF0",
+    bg="#FF0000",
     bg2="#F2F0E5",
     ui="#E6E4D9",
     ui2="#DAD8CE",
@@ -72,7 +72,8 @@ def _build_template(c: dict, accents: list[str]) -> go.layout.Template:
     return go.layout.Template(
         layout=go.Layout(
             colorway=accents,
-            font=dict(family="Inter, Helvetica, Arial, sans-serif", color=c["tx"], size=13),
+            font=dict(family="Inter, Helvetica, Arial, sans-serif",
+                      color=c["tx"], size=13),
             title=dict(font=dict(color=c["tx"], size=18)),
             paper_bgcolor=c["bg"],
             plot_bgcolor=c["bg"],
@@ -110,7 +111,8 @@ if __name__ == "__main__":
     x = ["Mon", "Tue", "Wed", "Thu", "Fri"]
     fig = go.Figure()
     for i, name in enumerate(["reads", "writes", "errors"]):
-        fig.add_trace(go.Scatter(x=x, y=[3 + i, 5 + i, 4 + i, 6 + i, 5 + i], name=name, mode="lines+markers"))
+        fig.add_trace(go.Scatter(
+            x=x, y=[3 + i, 5 + i, 4 + i, 6 + i, 5 + i], name=name, mode="lines+markers"))
 
     fig.update_layout(template="flexoki_light", title="Flexoki Light")
     fig.write_html("flexoki_light_demo.html")
