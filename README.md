@@ -88,8 +88,15 @@ python scripts/showcase.py --output docs/showcase
 
 The script writes one HTML file per chart into `docs/showcase/`. The [interactive chart showcase](docs/index.html) presents every chart sequentially, with a theme toggle that updates both the page and charts.
 
-The repository workflow regenerates the showcase whenever the theme or showcase script changes and checks that the generated HTML is committed.
+For a quick manual visual check before pushing a theme change, render a couple of example PNGs to the docs image folder:
 
+```bash
+python tests/render_example_charts.py --output-dir docs/assets/images
+```
+
+This writes preview PNGs such as `flexoki_light.png` and `flexoki_dark.png` into `docs/assets/images/`, which makes it easy to review them locally and commit them alongside the README when the visual result looks right.
+
+The repository workflow regenerates the showcase whenever the theme or showcase script changes and checks that the generated HTML is committed.
 
 ## Palette reference
 
