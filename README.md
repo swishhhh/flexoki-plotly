@@ -10,8 +10,8 @@ Registers two templates — `flexoki_light` and `flexoki_dark` — that you can 
 
 <table>
 	<tr>
-		<td><a><img src="docs/demos/flexoki_dark_demo.png" alt="Flexoki dark Plotly demo"></a></td>
-		<td><a><img src="docs/demos/flexoki_light_demo.png" alt="Flexoki light Plotly demo"></a></td>
+		<td><a><img src="docs/assets/images/flexoki_dark_demo.png" alt="Flexoki dark Plotly demo"></a></td>
+		<td><a><img src="docs/assets/images/flexoki_light_demo.png" alt="Flexoki light Plotly demo"></a></td>
 	</tr>
 </table>
 
