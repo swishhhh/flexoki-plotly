@@ -84,7 +84,7 @@ def render_chart(chart_name: str, figure: go.Figure) -> str:
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Flexoki {chart_name.title()} Chart</title>
-    <style>html, body {{ margin: 0; }} #chart {{ width: 100%; }}</style>
+    <style>html, body {{ margin: 0; overflow: hidden; }} #chart {{ width: 100%; }}</style>
 </head>
 <body>
     <div id="{chart_id}" style="height:500px; width:100%;"></div>
