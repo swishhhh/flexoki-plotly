@@ -1,0 +1,84 @@
+--- --- @import "{{ site.theme }}";
+
+/* --- FLEXOKI PALETTE INJECTION --- */
+:root {
+  /* Base Tones */
+  --flexoki-bg: #FFFCF0;
+  /* Paper */
+  --flexoki-fg: #100F0F;
+  /* Ink */
+  --flexoki-border: #CECDC3;
+  /* High contrast element lines */
+
+  /* Primary Accent Colors */
+  --flexoki-red: #AF3029;
+  --flexoki-orange: #BC5215;
+  --flexoki-yellow: #AD8300;
+  --flexoki-green: #66800B;
+  --flexoki-cyan: #24837B;
+  --flexoki-blue: #205EA6;
+  --flexoki-purple: #5E409D;
+  --flexoki-magenta: #A02F6F;
+}
+
+/* --- OVERRIDE DEFAULT THEME SCHEME --- */
+body {
+  background-color: var(--flexoki-bg) !important;
+  color: var(--flexoki-fg) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--flexoki-fg) !important;
+  font-weight: 700;
+  border-bottom: 1px solid var(--flexoki-border);
+  padding-bottom: 0.3em;
+}
+
+a {
+  color: var(--flexoki-blue) !important;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    color: var(--flexoki-cyan) !important;
+    border-bottom: 1px solid var(--flexoki-cyan);
+  }
+}
+
+code {
+  background-color: #F2F0E5 !important;
+  /* Slightly darker paper tone for blocks */
+  color: var(--flexoki-magenta) !important;
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+
+pre {
+  background-color: #F2F0E5 !important;
+  border: 1px solid var(--flexoki-border);
+  border-radius: 6px;
+  color: var(--flexoki-fg);
+}
+
+/* Adjust header and wrapper components from GitHub's Minimal template */
+.wrapper {
+  max-width: 760px;
+}
+
+header p.view a {
+  background: #F2F0E5;
+  border: 1px solid var(--flexoki-border);
+  color: var(--flexoki-fg) !important;
+
+  &:hover {
+    background: var(--flexoki-border);
+  }
+}
